@@ -5,6 +5,10 @@
   "repository": "git@github.com:xyflow/xyflow.git",
   "license": "MIT",
   "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "turbo run dev --parallel --concurrency 12",

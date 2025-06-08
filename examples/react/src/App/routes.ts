@@ -63,11 +63,11 @@ export interface IRoute {
 }
 
 const routes: IRoute[] = [
-  {
-    name: 'Add Node on edge Drop',
-    path: 'add-node-edge-drop',
-    component: AddNodeOnEdgeDrop,
-  },
+  // {
+  //   name: 'Add Node on edge Drop',
+  //   path: 'add-node-edge-drop',
+  //   component: AddNodeOnEdgeDrop,
+  // },
   {
     name: 'Basic',
     path: 'basic',

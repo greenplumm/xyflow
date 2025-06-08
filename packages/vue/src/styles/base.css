@@ -1,0 +1,42 @@
+@import '../../../system/src/styles/init.css';
+@import '../../../system/src/styles/base.css';
+@import '../../../system/src/styles/node-resizer.css';
+
+.vue-flow {
+  --vue-node-border-default: 1px solid #bbb;
+  --vue-node-border-selected-default: 1px solid #555;
+
+  --vue-handle-background-color-default: #333;
+
+  --vue-selection-background-color-default: rgba(150, 150, 180, 0.1);
+  --vue-selection-border-default: 1px dotted rgba(155, 155, 155, 0.8);
+}
+
+.vue-flow.dark {
+  --vue-node-color-default: #f8f8f8;
+}
+
+.vue-flow__handle {
+  background-color: var(--vue-handle-background-color, var(--vue-handle-background-color-default));
+}
+
+.vue-flow__node-input,
+.vue-flow__node-default,
+.vue-flow__node-output,
+.vue-flow__node-group {
+  border: var(--vue-node-border, var(--vue-node-border-default));
+  color: var(--vue-node-color, var(--vue-node-color-default));
+
+  &.selected,
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    border: var(--vue-node-border-selected, var(--vue-node-border-selected-default));
+  }
+}
+
+.vue-flow__nodesselection-rect,
+.vue-flow__selection {
+  background: var(--vue-selection-background-color, var(--vue-selection-background-color-default));
+  border: var(--vue-selection-border, var(--vue-selection-border-default));
+}

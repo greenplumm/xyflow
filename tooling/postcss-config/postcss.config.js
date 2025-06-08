@@ -14,7 +14,12 @@ module.exports = (ctx) => {
       postcssNested,
       postcssCombine,
       postcssRename({
-        strategy: (className) => className.replace('xy', process.env.LIB),
+        strategy: (className) => {
+          if (!process.env.LIB) {
+            throw new Error('LIB environment variable is required for CSS class renaming');
+          }
+          return className.replace('xy', process.env.LIB);
+        },
       }),
       autoprefixer,
       ctx.env === 'production' && cssnano,

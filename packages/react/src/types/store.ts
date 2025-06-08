@@ -47,7 +47,7 @@ import type {
   InternalNode,
 } from '.';
 
-export type ReactFlowStore<NodeType extends Node = Node, EdgeType extends Edge = Edge> = {
+export type VueFlowStore<NodeType extends Node = Node, EdgeType extends Edge = Edge> = {
   rfId: string;
   width: number;
   height: number;
@@ -148,7 +148,7 @@ export type ReactFlowStore<NodeType extends Node = Node, EdgeType extends Edge =
   debug: boolean;
 };
 
-export type ReactFlowActions<NodeType extends Node, EdgeType extends Edge> = {
+export type VueFlowActions<NodeType extends Node, EdgeType extends Edge> = {
   setNodes: (nodes: NodeType[]) => void;
   setEdges: (edges: EdgeType[]) => void;
   setDefaultNodesAndEdges: (nodes?: NodeType[], edges?: EdgeType[]) => void;
@@ -173,8 +173,8 @@ export type ReactFlowActions<NodeType extends Node, EdgeType extends Edge> = {
   setPaneClickDistance: (distance: number) => void;
 };
 
-export type ReactFlowState<NodeType extends Node = Node, EdgeType extends Edge = Edge> = ReactFlowStore<
+export type VueFlowState<NodeType extends Node = Node, EdgeType extends Edge = Edge> = VueFlowStore<
   NodeType,
   EdgeType
 > &
-  ReactFlowActions<NodeType, EdgeType>;
+  VueFlowActions<NodeType, EdgeType>;

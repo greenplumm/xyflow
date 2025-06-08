@@ -1,0 +1,27 @@
+{
+  "name": "@xyflow/vue",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/xyflow-vue.umd.js",
+  "module": "./dist/xyflow-vue.es.js",
+  "scripts": {
+    "dev": "vite --port 3001 --open --host",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@vue/runtime-dom": "^3.5.13",
+    "@vueuse/core": "^10.7.0",
+    "@xyflow/system": "workspace:*",
+    "classcat": "^5.0.3",
+    "pinia": "^3.0.2",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": { 
+    "@types/node": "^20.11.28",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "typescript": "5.2.2",
+    "vite": "6.2.5",
+    "vue-tsc": "^1.8.27"
+  }
+}

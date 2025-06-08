@@ -100,7 +100,7 @@ export function EdgeWrapper<EdgeType extends Edge = Edge>({
     ),
     shallow
   );
-
+  console.log('sourceX, sourceY', sourceX, sourceY)
   const markerStartUrl = useMemo(
     () => (edge.markerStart ? `url('#${getMarkerId(edge.markerStart, rfId)}')` : undefined),
     [edge.markerStart, rfId]

@@ -1,0 +1,39 @@
+<script setup lang="ts">
+import { Position, getSmoothStepPath } from '@xyflow/system';
+import BaseEdge from './BaseEdge.vue';
+import type { SmoothStepEdgeProps } from '../../types';
+
+const props = defineProps<SmoothStepEdgeProps>();
+
+const [path, labelX, labelY] = getSmoothStepPath({
+  sourceX: props.sourceX,
+  sourceY: props.sourceY,
+  sourcePosition: props.sourcePosition || Position.Bottom,
+  targetX: props.targetX,
+  targetY: props.targetY,
+  targetPosition: props.targetPosition || Position.Top,
+  borderRadius: props.pathOptions?.borderRadius,
+  offset: props.pathOptions?.offset,
+});
+
+const _id = props.id;
+</script>
+
+<template>
+  <BaseEdge
+    :id="_id"
+    :path="path"
+    :labelX="labelX"
+    :labelY="labelY"
+    :label="props.label"
+    :labelStyle="props.labelStyle"
+    :labelShowBg="props.labelShowBg"
+    :labelBgStyle="props.labelBgStyle"
+    :labelBgPadding="props.labelBgPadding"
+    :labelBgBorderRadius="props.labelBgBorderRadius"
+    :style="props.style"
+    :markerEnd="props.markerEnd"
+    :markerStart="props.markerStart"
+    :interactionWidth="props.interactionWidth"
+  />
+</template>
