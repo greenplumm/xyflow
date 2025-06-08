@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useStore } from '../../hooks/useStore';
 import { useVisibleEdgeIds } from '../../hooks/useVisibleEdgeIds';
 import MarkerDefinitions from './MarkerDefinitions.vue';
@@ -35,8 +35,14 @@ const selector = (s: ReactFlowState) => ({
   onError: s.onError,
 });
 
-const { edgesFocusable, edgesReconnectable, elementsSelectable, onError } = useStore(selector);
-const edgeIds = useVisibleEdgeIds(props.onlyRenderVisibleElements);
+const { edgesFocusable, edgesReconnectable, elementsSelectable, onError } = useStore(selector).value;
+const edgeIds = ref(useVisibleEdgeIds(props.onlyRenderVisibleElements));
+const edges = useStore((state) => state.edges);
+watch(
+  () => edges.value,
+  (newEdges) => (edgeIds.value = newEdges.map((edge) => edge.id)),
+  { immediate: false }
+);
 </script>
 
 <template>

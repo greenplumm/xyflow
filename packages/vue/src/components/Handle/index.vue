@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, reactive } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useStore, useStoreApi } from '../../hooks/useStore';
 import { Position, XYHandle, getHostForElement, isMouseEvent, addEdge } from '@xyflow/system';
@@ -87,10 +87,10 @@ if (!nodeId) {
 const onConnectExtended = (params: Connection) => {
   const sliced = store.getState();
   // const { defaultEdgeOptions, onConnect: onConnectAction, hasDefaultEdges } = storeToRefs(sliced);
-  const edgeParams = {
+  const edgeParams = reactive({
     ...sliced?.defaultEdgeOptions,
     ...params,
-  };
+  });
   if (sliced.hasDefaultEdges) {
     const { edges, setEdges } = store.getState();
     setEdges(addEdge(edgeParams, edges));
@@ -124,7 +124,12 @@ const onPointerDown = (event: MouseEvent | TouchEvent) => {
       panBy: currentStore.panBy,
       cancelConnection: currentStore.cancelConnection,
       onConnectStart: currentStore.onConnectStart,
-      onConnectEnd: currentStore.onConnectEnd,
+      onConnectEnd: (connection) => {
+        currentStore.onConnectEnd?.(connection);
+        if (connection?.isValid) {
+          onConnectExtended(connection);
+        }
+      },
       updateConnection: currentStore.updateConnection,
       onConnect: onConnectExtended,
       isValidConnection: props.isValidConnection || currentStore.isValidConnection,
